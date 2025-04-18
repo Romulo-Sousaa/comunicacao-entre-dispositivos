@@ -1,5 +1,6 @@
 from datagramas import dados
 from crc32 import calcular_crc32
+import random
 
 def adicionar_flag(datar):
     # Flag de início e fim
@@ -26,7 +27,7 @@ def bit_stuffing(datar):
     return stuffed_data
 
 def construir_quadros(datar):
-    # Dividir em quadros menores
+    # Dividir em 5 quadros menores
     tamanho_quadro = 200
     quadros = []
     for i in range(0, len(datar), tamanho_quadro):
@@ -37,10 +38,13 @@ def construir_quadros(datar):
         quadros.append(quadro_final)
     return quadros
 
-datagramas = dados()
+dados_originais = dados()
+dados_tratados = [construir_quadros(d) for d in dados_originais]
 
-for i, datagrama in enumerate(datagramas, 1):
-    quadros = construir_quadros(datagrama)
-    print(f"\n🧩 Datagrama {i} dividido em {len(quadros)} quadros com CRC-32:")
-    for j, quadro in enumerate(quadros, 1):
-        print(f"  Quadro {j}: {quadro}")
+indice = random.randint(0, 4)
+
+quadros_selecionados = [datagrama[indice] for datagrama in dados_tratados]
+
+print("Quadros selecionados:")
+for i, quadro in enumerate(quadros_selecionados, start=1):
+    print(f"Datagrama {i}: {quadro}")
