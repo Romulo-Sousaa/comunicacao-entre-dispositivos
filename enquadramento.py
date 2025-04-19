@@ -38,13 +38,9 @@ def construir_quadros(datar):
         quadros.append(quadro_final)
     return quadros
 
-dados_originais = dados()
-dados_tratados = [construir_quadros(d) for d in dados_originais]
+def armazenar_dados(datar):
+    dados_tratados = [construir_quadros(d) for d in datar]
+    indice = random.randint(0, 4)
+    quadros_selecionados = [datagrama[indice] for datagrama in dados_tratados]
 
-indice = random.randint(0, 4)
-
-quadros_selecionados = [datagrama[indice] for datagrama in dados_tratados]
-
-print("Quadros selecionados:")
-for i, quadro in enumerate(quadros_selecionados, start=1):
-    print(f"Datagrama {i}: {quadro}")
+    return quadros_selecionados, indice

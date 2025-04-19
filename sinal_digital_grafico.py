@@ -1,14 +1,10 @@
 import matplotlib.pyplot as plt
-import random
 from datagramas import dados
-from enquadramento import construir_quadros
+from enquadramento import armazenar_dados
 
 dados_originais = dados()
-dados_tratados = [construir_quadros(d) for d in dados_originais]
 
-indice = random.randint(0, 4)
-
-quadros_selecionados = [datagrama[indice] for datagrama in dados_tratados]
+dados, indice = armazenar_dados(dados_originais)
 
 def gerar_sinal(bits):
     # Cria arrays para tempo e nível lógico
@@ -24,7 +20,7 @@ def gerar_sinal(bits):
 # Plotar os três sinais
 plt.figure(figsize=(12, 6))
 cores = ['blue', 'green', 'red']
-for i, bits in enumerate(quadros_selecionados):
+for i, bits in enumerate(dados):
     t, n = gerar_sinal(bits)
     plt.step(t, [ni + 2*i for ni in n], where='post', label=f'Datagrama {i+1}')
 
