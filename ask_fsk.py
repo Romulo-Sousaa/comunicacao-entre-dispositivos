@@ -52,7 +52,7 @@ for idx, quadro in enumerate(dados):
         sinal_fsk[start:end] = np.sin(2 * np.pi * freq * t_bit)
 
     plt.subplot(6, 1, idx * 2 + 2)
-    plt.plot(t, sinal_fsk, color='blue')
+    plt.plot(t, sinal_fsk, color='green')
     plt.title(f'Modulação FSK do Quadro {indice + 1} do Datagrama {idx + 1}')
     plt.xlabel('Tempo')
     plt.ylabel('Amplitude')
