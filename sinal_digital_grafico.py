@@ -1,10 +1,4 @@
 import matplotlib.pyplot as plt
-from datagramas import dados
-from enquadramento import armazenar_dados
-
-dados_originais = dados()
-
-dados, indice = armazenar_dados(dados_originais)
 
 def gerar_sinal(bits):
     # Cria arrays para tempo e nível lógico
@@ -17,17 +11,20 @@ def gerar_sinal(bits):
 
     return tempo, nivel
 
-# Plotar os três sinais
-plt.figure(figsize=(12, 6))
-cores = ['blue', 'green', 'red']
-for i, bits in enumerate(dados):
-    t, n = gerar_sinal(bits)
-    plt.step(t, [ni + 2*i for ni in n], where='post', label=f'Datagrama {i+1}')
+def plotar_sinais_digitais(dados, indice=0):
+    
+    plt.figure(figsize=(12, 6))
+    cores = ['blue', 'green', 'red']
+    
+    for i, bits in enumerate(dados):
+        t, n = gerar_sinal(bits)
+        plt.step(t, [ni + 2*i for ni in n], where='post', label=f'Datagrama {i+1}', color=cores[i % len(cores)])
 
-plt.ylim(-1, 7)
-plt.yticks([])
-plt.xlabel('Tempo')
-plt.title(f'Sinais Digitais - Quadro {indice + 1} dos 3 Datagramas')
-plt.legend()
-plt.grid(True)
-plt.show()
+    plt.ylim(-1, 2*len(dados) + 1)
+    plt.yticks([])
+    plt.xlabel('Tempo')
+    plt.title(f'Sinais Digitais - Quadro {indice + 1} dos {len(dados)} Datagramas')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()

@@ -7,3 +7,11 @@ def calcular_crc32(bits):
             dados ^= polinomio << (tamanho - 33 - i)
     crc = dados & 0xFFFFFFFF
     return f"{crc:032b}"
+
+def anexar_crc_manual(bits):
+    return bits + calcular_crc32(bits)
+
+def verificar_crc_manual(bits_com_crc):
+    dados = bits_com_crc[:-32]
+    crc_recebido = bits_com_crc[-32:]
+    return calcular_crc32(dados) == crc_recebido
