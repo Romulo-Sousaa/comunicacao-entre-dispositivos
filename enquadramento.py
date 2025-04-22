@@ -1,4 +1,3 @@
-from datagramas import dados
 from crc32 import calcular_crc32, anexar_crc_manual
 import random
 

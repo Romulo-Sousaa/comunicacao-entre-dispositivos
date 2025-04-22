@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 def gerar_sinal(bits):
-    # Cria arrays para tempo e nível lógico
+    
     tempo = []
     nivel = []
 

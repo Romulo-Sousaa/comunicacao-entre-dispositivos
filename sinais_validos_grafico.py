@@ -1,9 +1,7 @@
 import matplotlib.pyplot as plt
 
 def plotar_3_quadros_em_linhas(dados_binarios):
-    """
-    Plota até 3 sinais digitais (quadros) em 3 linhas diferentes no mesmo gráfico.
-    """
+    
     num_quadros = min(3, len(dados_binarios))
     plt.figure(figsize=(12, 6))
 
